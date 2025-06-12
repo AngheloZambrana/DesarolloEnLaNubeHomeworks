@@ -6,6 +6,7 @@ import {
 import { auth } from "../firebase/firebaseInit";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Auth.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -34,17 +35,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded shadow">
-        <h2 className="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
-        <form onSubmit={handleLogin} className="space-y-4">
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2 className="auth-title">Iniciar Sesión</h2>
+        <form onSubmit={handleLogin}>
           <input
             type="email"
             placeholder="Correo"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="auth-input"
           />
           <input
             type="password"
@@ -52,22 +53,16 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="auth-input"
           />
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-          >
+          <button type="submit" className="auth-button">
             Iniciar Sesión
           </button>
         </form>
-        <button
-          onClick={handleGoogleLogin}
-          className="w-full mt-4 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
-        >
+        <button onClick={handleGoogleLogin} className="google-button">
           Iniciar sesión con Google
         </button>
-        {error && <p className="text-red-600 text-sm mt-2 text-center">{error}</p>}
+        {error && <p className="auth-error">{error}</p>}
       </div>
     </div>
   );

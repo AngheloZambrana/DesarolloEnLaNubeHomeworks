@@ -1,0 +1,95 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-box {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.logout-button {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #b91c1c;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.link-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.link-button:hover {
+  background-color: #1d4ed8;
+}
+
+.unlink-button {
+  background-color: #6b7280;
+  color: white;
+  padding: 0.75rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.unlink-button:hover {
+  background-color: #4b5563;
+}
+
+.success-message {
+  color: #16a34a;
+  font-size: 14px;
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 1rem;
+}
