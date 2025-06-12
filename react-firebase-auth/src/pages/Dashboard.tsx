@@ -5,6 +5,7 @@ import {
   unlink
 } from "firebase/auth";
 import { useState } from "react";
+import "../styles/Dashboard.css";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -23,8 +24,8 @@ export default function Dashboard() {
       setSuccess(null);
     }
   };
-  const handleUnlinkGoogle = async () => {
 
+  const handleUnlinkGoogle = async () => {
     if (!user) return;
     try {
       await unlink(user, "google.com");
@@ -37,35 +38,26 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-8 flex flex-col items-center">
-      <div className="max-w-lg w-full bg-white p-8 rounded shadow text-center">
-        <h1 className="text-3xl font-semibold mb-4">Bienvenido, {user?.email}</h1>
-        <button
-          onClick={logout}
-          className="mb-6 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded transition"
-        >
+    <div className="dashboard-container">
+      <div className="dashboard-box">
+        <h1 className="dashboard-title">Bienvenido, {user?.email}</h1>
+        <button onClick={logout} className="logout-button">
           Cerrar Sesión
         </button>
 
-        <h2 className="text-xl font-bold mb-4">Asociar proveedores</h2>
+        <h2 className="section-title">Asociar proveedores</h2>
 
-        <div className="flex justify-center gap-4 mb-4">
-          <button
-            onClick={handleLinkGoogle}
-            className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition"
-          >
+        <div className="button-group">
+          <button onClick={handleLinkGoogle} className="link-button">
             Asociar cuenta Google
           </button>
-          <button
-            onClick={handleUnlinkGoogle}
-            className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-4 rounded transition"
-          >
+          <button onClick={handleUnlinkGoogle} className="unlink-button">
             Desvincular Google
           </button>
         </div>
 
-        {success && <p className="text-green-600">{success}</p>}
-        {error && <p className="text-red-600">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
+        {error && <p className="error-message">{error}</p>}
       </div>
     </div>
   );
