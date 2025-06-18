@@ -11,11 +11,12 @@ import {
 } from "firebase/firestore";
 
 export const postService = {
-  async crearPost(userId: string, titulo: string, contenido: string) {
+  async crearPost(userId: string, titulo: string, contenido: string, picture: string) {
     const newPost = {
       userId,
       titulo,
       contenido,
+      picture,
       fechaCreacion: Timestamp.now(),
     };
     const postRef = await addDoc(collection(db, "posts"), newPost);
@@ -33,3 +34,4 @@ export const postService = {
     return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   }
 };
+
