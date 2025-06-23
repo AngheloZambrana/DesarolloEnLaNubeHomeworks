@@ -1,0 +1,33 @@
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.link-button,
+.unlink-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.link-button {
+  background-color: #2980b9;
+  color: white;
+}
+
+.link-button:hover {
+  background-color: #1c5980;
+}
+
+.unlink-button {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.unlink-button:hover {
+  background-color: #95a5a6;
+}

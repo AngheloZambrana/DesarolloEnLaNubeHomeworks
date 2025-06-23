@@ -4,7 +4,7 @@ import { auth } from "../firebase/firebaseInit";
 import { db } from "../firebase/firebaseInit";
 import { doc, setDoc } from "firebase/firestore";
 import "../styles/Auth.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [nombreCompleto, setNombreCompleto] = useState("");
@@ -91,6 +91,13 @@ export default function Register() {
             className="auth-input"
           />
           <button type="submit" className="auth-button">Registrarse</button>
+
+          <div style={{ marginTop: "1rem", textAlign: "center" }}>
+            ¿Ya tienes cuenta?{" "}
+            <Link to="/" style={{ color: "#2563eb", textDecoration: "underline" }}>
+              Inicia sesión
+            </Link>
+          </div>
           {error && <p className="auth-error">{error}</p>}
         </form>
       </div>
