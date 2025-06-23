@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebaseInit";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
 export default function Login() {
@@ -62,6 +62,12 @@ export default function Login() {
         <button onClick={handleGoogleLogin} className="google-button">
           Iniciar sesión con Google
         </button>
+        <div style={{ marginTop: "1rem", textAlign: "center" }}>
+          ¿No tienes una cuenta?{" "}
+          <Link to="/register" style={{ color: "#2563eb", textDecoration: "underline" }}>
+            Regístrate
+          </Link>
+        </div>
         {error && <p className="auth-error">{error}</p>}
       </div>
     </div>
