@@ -10,6 +10,7 @@ import { useNotificaciones } from "../hooks/useNotificaciones";
 import ProveedoresSection from "../component/ProveedoresSection";
 import CrearPostForm from "../component/CrearPostForm";
 import PostsList from "../component/PostsList";
+import { moderacionService } from "../services/moderacionService";
 import "../styles/Dashboard.css"
 
 
@@ -57,7 +58,8 @@ export default function Dashboard() {
       setLoading(true);
       setError(null);
 
-      await postService.crearPost(user.uid, titulo, contenido, picture);
+      const contenidoModerado = await moderacionService.moderarContenido(contenido);
+      await postService.crearPost(user.uid, titulo, contenidoModerado, picture);
 
       const usersSnapshot = await getDocs(collection(db, "users"));
       const notificationPromises: Promise<void>[] = [];
