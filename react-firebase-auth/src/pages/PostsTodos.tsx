@@ -4,6 +4,7 @@ import { db } from "../firebase/firebaseInit";
 import { likeService } from "../services/likeService";
 import { notificacionService } from "../services/notificacionService";
 import { useAuth } from "../context/AuthContext";
+import { moderacionService } from "../services/moderacionService";
 import "../styles/PostsList.css";
 
 interface Post {

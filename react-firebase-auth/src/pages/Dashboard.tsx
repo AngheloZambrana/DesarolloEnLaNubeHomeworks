@@ -57,9 +57,17 @@ export default function Dashboard() {
     try {
       setLoading(true);
       setError(null);
+      setSuccess(null);
 
-      const contenidoModerado = await moderacionService.moderarContenido(contenido);
-      await postService.crearPost(user.uid, titulo, contenidoModerado, picture);
+      const [tituloModerado, contenidoModerado] = await Promise.all([
+        moderacionService.moderarContenido(titulo),
+        moderacionService.moderarContenido(contenido)
+      ]);
+
+      const fueModerado = tituloModerado !== titulo || contenidoModerado !== contenido;
+      console.log(fueModerado)
+
+      await postService.crearPost(user.uid, tituloModerado, contenidoModerado, picture);
 
       const usersSnapshot = await getDocs(collection(db, "users"));
       const notificationPromises: Promise<void>[] = [];
@@ -72,7 +80,7 @@ export default function Dashboard() {
               uidDestino,
               `Nuevo post de ${user.email}`,
               "post",
-              titulo
+              tituloModerado
             )
           );
         }
@@ -80,7 +88,11 @@ export default function Dashboard() {
 
       await Promise.all(notificationPromises);
 
-      setSuccess("Post creado y notificaciones enviadas correctamente");
+      setSuccess(
+        fueModerado 
+          ? "Post creado (contenido moderado)" 
+          : "Post creado correctamente"
+      );
       fetchPosts();
     } catch (err) {
       if (err instanceof Error) {
